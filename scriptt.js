@@ -5,57 +5,47 @@
 'use strict';
 
 // ------------------------------------------
-// CATÁLOGO DE PRODUCTOS
+// ESTADO GLOBAL
+// El catálogo se carga desde productos.json
 // ------------------------------------------
-const productos = [
-  { nombre: 'Aros Cascada',         precio:  7.99, imagen: 'assets/ARETES/AROS_CASCADA.jpeg',           categoria: 'aretes',   nuevo: false },
-  { nombre: 'Heart Chic',           precio: 15.99, imagen: 'assets/COLLARES/HEART_CHIC.png',             categoria: 'collares', nuevo: false },
-  { nombre: 'Pink Charm',           precio:  4.99, imagen: 'assets/ARETES/PINK_CHARM.jpeg',              categoria: 'aretes',   nuevo: true  },
-  { nombre: 'Blue Charm',           precio: 22.00, imagen: 'assets/ARETES/BLUE_CHARM.jpeg',              categoria: 'aretes',   nuevo: false },
-  { nombre: 'Floral Rings',         precio:  7.99, imagen: 'assets/ARETES/FLORAL_RINGS.jpeg',            categoria: 'aretes',   nuevo: true  },
-  { nombre: 'Mini Teddy',           precio: 15.99, imagen: 'assets/COLLARES/MINI_TEDDY.png',             categoria: 'collares', nuevo: false },
-  { nombre: 'Gafas Vintage',        precio: 14.99, imagen: 'assets/GAFAS/Gafasverdesvintage.png',        categoria: 'gafas',    nuevo: true  },
-  { nombre: 'Halo',                 precio:  4.99, imagen: 'assets/ARETES/halo.jpeg',                    categoria: 'aretes',   nuevo: false },
-  { nombre: 'Moon Rings',           precio:  4.99, imagen: 'assets/ARETES/MOON_RINGS.jpeg',              categoria: 'aretes',   nuevo: true  },
-  { nombre: 'Gafas Negras',         precio: 18.00, imagen: 'assets/GAFAS/Gafasmarconegro.png',           categoria: 'gafas',    nuevo: true  },
-  { nombre: 'Rosa Pastel',          precio:  4.99, imagen: 'assets/ARETES/ROSA_PASTEL.jpeg',             categoria: 'aretes',   nuevo: false },
-  { nombre: 'Golden Rose',          precio: 10.00, imagen: 'assets/ARETES/GOLDEN_ROSE.jpeg',             categoria: 'aretes',   nuevo: true  },
-  { nombre: 'Gafas Pink',           precio: 18.00, imagen: 'assets/GAFAS/Gafasrosas.png',                categoria: 'gafas',    nuevo: true  },
-  { nombre: 'Asymmetric',           precio: 10.00, imagen: 'assets/ARETES/ASYMMETRYC.jpeg',              categoria: 'aretes',   nuevo: true  },
-  { nombre: 'Cherries',             precio: 10.00, imagen: 'assets/ARETES/CHERRIES.jpeg',                categoria: 'aretes',   nuevo: true  },
-  { nombre: 'Anillo Aura',          precio: 12.50, imagen: 'assets/ANILLOS/AURA_GOLD.jpeg',              categoria: 'anillos',  nuevo: true  },
-  { nombre: 'Mini Bloom',           precio: 15.99, imagen: 'assets/COLLARES/MINI_BLOOM.png',             categoria: 'collares', nuevo: false },
-  { nombre: 'Drop Glow',            precio: 15.99, imagen: 'assets/COLLARES/DROP_GLOW.png',              categoria: 'collares', nuevo: false },
-  { nombre: 'Equilibrio',           precio: 15.99, imagen: 'assets/COLLARES/EQUILIBRIO.png',             categoria: 'collares', nuevo: false },
-  { nombre: 'Mini Love',            precio: 15.99, imagen: 'assets/COLLARES/MINI_LOVE.png',              categoria: 'collares', nuevo: false },
-  { nombre: 'Gafas Miel',           precio: 18.00, imagen: 'assets/GAFAS/Gafascuadradasmiel.png',        categoria: 'gafas',    nuevo: true  },
-  { nombre: 'Gafas Vino',           precio: 18.00, imagen: 'assets/GAFAS/Gafascuadradasvino.png',        categoria: 'gafas',    nuevo: false },
-  { nombre: 'Gafas Redondas Negras',precio: 18.00, imagen: 'assets/GAFAS/Gafasredondasnegras.png',       categoria: 'gafas',    nuevo: false },
-  { nombre: 'Gafas Rosa',           precio: 18.00, imagen: 'assets/GAFAS/Gafasredondasrosa.png',         categoria: 'gafas',    nuevo: false },
-];
+let productos = [];
+let carrito   = [];
 
 // ------------------------------------------
-// IMAGEN DE RESPALDO (SVG inline, sin petición de red)
+// IMAGEN DE RESPALDO (SVG inline)
 // ------------------------------------------
 const IMAGEN_PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='280' viewBox='0 0 300 280'%3E%3Crect width='300' height='280' fill='%23f5f3ef'/%3E%3Ctext x='50%25' y='45%25' font-family='Georgia,serif' font-size='28' fill='%23a3ad99' text-anchor='middle' dominant-baseline='middle' letter-spacing='4'%3ESERENA%3C/text%3E%3Ctext x='50%25' y='60%25' font-family='Georgia,serif' font-size='11' fill='%23c5a059' text-anchor='middle' dominant-baseline='middle' letter-spacing='2'%3Ejoyería%3C/text%3E%3C/svg%3E";
 
 // ------------------------------------------
+// UTILIDADES DE FECHA — etiqueta NUEVO
+// ------------------------------------------
+function esNuevo(fechaSubida) {
+  if (!fechaSubida) return false;
+  const hoy     = new Date();
+  const subida  = new Date(fechaSubida + 'T00:00:00');
+  const diffDias = (hoy - subida) / (1000 * 60 * 60 * 24);
+  return diffDias >= 0 && diffDias <= 7;
+}
+
+function estaAgotado(p) {
+  return p.stock === 0 || p.estado === 'agotado';
+}
+
+// ------------------------------------------
 // CARRITO
 // ------------------------------------------
-let carrito = [];
-
-/** Devuelve la cantidad total de ítems en el carrito. */
 function totalItems() {
   return carrito.reduce(function (sum, item) { return sum + item.cantidad; }, 0);
 }
 
-/** Devuelve el precio total del carrito. */
 function totalPrecio() {
   return carrito.reduce(function (sum, item) { return sum + item.precio * item.cantidad; }, 0);
 }
 
-/** Agrega un producto al carrito (o incrementa su cantidad si ya existe). */
 function agregarAlCarrito(nombre, precio) {
+  const p = productos.find(function (x) { return x.nombre === nombre; });
+  if (p && estaAgotado(p)) return;
+
   const existente = carrito.find(function (item) { return item.nombre === nombre; });
   if (existente) {
     existente.cantidad += 1;
@@ -66,14 +56,12 @@ function agregarAlCarrito(nombre, precio) {
   mostrarFeedbackBoton(nombre);
 }
 
-/** Elimina un ítem del carrito por su índice. */
 function eliminarDelCarrito(index) {
   carrito.splice(index, 1);
   actualizarContadorCarrito();
-  refrescarContenidoModal();       // refresca sin reabrir el modal
+  refrescarContenidoModal();
 }
 
-/** Vacía el carrito por completo. */
 function limpiarCarrito() {
   carrito = [];
   actualizarContadorCarrito();
@@ -92,10 +80,8 @@ function actualizarContadorCarrito() {
   setTimeout(function () { badge.style.transform = 'scale(1)'; }, 200);
 }
 
-/** Marca visualmente el botón de un producto como "agregado" por 1.4 s. */
 function mostrarFeedbackBoton(nombre) {
-  const tarjetas = document.querySelectorAll('.product-item');
-  tarjetas.forEach(function (tarjeta) {
+  document.querySelectorAll('.product-item').forEach(function (tarjeta) {
     const titulo = tarjeta.querySelector('h3');
     if (!titulo || titulo.textContent !== nombre) return;
     const btn = tarjeta.querySelector('.btn-agregar');
@@ -126,19 +112,37 @@ function renderizarProductos(lista, contenedorId) {
   }
 
   lista.forEach(function (p) {
-    const tarjeta = document.createElement('div');
-    tarjeta.className = 'product-item';
+    const agotado = estaAgotado(p);
+    const nuevo   = !agotado && esNuevo(p.fechaSubida);
 
-    // Imagen — al hacer clic abre el detalle
+    // Tarjeta
+    const tarjeta = document.createElement('div');
+    tarjeta.className = 'product-item' + (agotado ? ' product-item--agotado' : '');
+
+    // Etiqueta AGOTADO o NUEVO (nunca las dos)
+    if (agotado || nuevo) {
+      const badge = document.createElement('span');
+      badge.className = agotado
+        ? 'product-badge product-badge--agotado'
+        : 'product-badge product-badge--nuevo';
+      badge.textContent = agotado ? 'AGOTADO' : 'NUEVO';
+      tarjeta.appendChild(badge);
+    }
+
+    // Imagen
     const img = document.createElement('img');
-    img.src = p.imagen;
-    img.alt = p.nombre + ' – Serena Joyería Ecuador';
+    img.src     = p.imagen;
+    img.alt     = p.nombre + ' – Serena Joyería Ecuador';
     img.loading = 'lazy';
     img.addEventListener('error', function () {
       this.onerror = null;
       this.src = IMAGEN_PLACEHOLDER;
     });
-    img.addEventListener('click', function () { verDetalle(p.nombre); });
+    if (!agotado) {
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', function () { verDetalle(p.nombre); });
+    }
+    tarjeta.appendChild(img);
 
     // Detalles
     const detalles = document.createElement('div');
@@ -147,22 +151,42 @@ function renderizarProductos(lista, contenedorId) {
     const h3 = document.createElement('h3');
     h3.textContent = p.nombre;
 
-    const precio = document.createElement('p');
-    precio.textContent = '$' + p.precio.toFixed(2);
+    const precioEl = document.createElement('p');
+    precioEl.className = 'product-price';
+    precioEl.textContent = '$' + p.precio.toFixed(2);
 
+    // Info de stock
+    const stockEl = document.createElement('p');
+    stockEl.className = 'product-stock';
+    if (agotado) {
+      stockEl.textContent = 'Sin disponibilidad';
+      stockEl.classList.add('product-stock--agotado');
+    } else if (p.stock <= 3) {
+      stockEl.textContent = '¡Solo ' + p.stock + ' disponible' + (p.stock === 1 ? '' : 's') + '!';
+      stockEl.classList.add('product-stock--urgente');
+    } else {
+      stockEl.textContent = p.stock + ' disponibles';
+    }
+
+    // Botón
     const btn = document.createElement('button');
     btn.className = 'btn-agregar';
-    btn.textContent = 'AGREGAR';
-    btn.addEventListener('click', function () {
-      agregarAlCarrito(p.nombre, p.precio);
-      abrirModalCarrito();
-    });
+    if (agotado) {
+      btn.textContent = 'AGOTADO';
+      btn.disabled    = true;
+      btn.classList.add('btn-agregar--desactivado');
+    } else {
+      btn.textContent = 'AGREGAR';
+      btn.addEventListener('click', function () {
+        agregarAlCarrito(p.nombre, p.precio);
+        abrirModalCarrito();
+      });
+    }
 
     detalles.appendChild(h3);
-    detalles.appendChild(precio);
+    detalles.appendChild(precioEl);
+    detalles.appendChild(stockEl);
     detalles.appendChild(btn);
-
-    tarjeta.appendChild(img);
     tarjeta.appendChild(detalles);
     grid.appendChild(tarjeta);
   });
@@ -173,7 +197,9 @@ function cargarNuevasLlegadas(orden) {
   let lista = productos.slice();
 
   if (orden === 'nuevos') {
-    lista.sort(function (a, b) { return b.nuevo - a.nuevo; });
+    lista.sort(function (a, b) {
+      return new Date(b.fechaSubida) - new Date(a.fechaSubida);
+    });
   } else if (orden === 'precio-asc') {
     lista.sort(function (a, b) { return a.precio - b.precio; });
   } else if (orden === 'precio-desc') {
@@ -200,7 +226,6 @@ function abrirModalCarrito() {
   abrirModal('modal-compra');
 }
 
-/** Actualiza el HTML interno del modal sin reabrirlo. */
 function refrescarContenidoModal() {
   const titulo = document.getElementById('modal-titulo');
   const texto  = document.getElementById('modal-texto');
@@ -246,22 +271,21 @@ function refrescarContenidoModal() {
 }
 
 // ------------------------------------------
-// MODAL — DETALLE DE PRODUCTO
+// MODAL — DETALLE
 // ------------------------------------------
 function verDetalle(nombre) {
   const p = productos.find(function (item) { return item.nombre === nombre; });
-  if (!p) return;
+  if (!p || estaAgotado(p)) return;
 
-  document.getElementById('det-img').src        = p.imagen;
-  document.getElementById('det-img').alt        = p.nombre + ' – Serena Joyería';
+  document.getElementById('det-img').src            = p.imagen;
+  document.getElementById('det-img').alt            = p.nombre + ' – Serena Joyería';
   document.getElementById('det-nombre').textContent = p.nombre;
   document.getElementById('det-precio').textContent = '$' + p.precio.toFixed(2);
   document.getElementById('det-desc').textContent   =
-    p.descripcion || 'Pieza única, diseñada con materiales de alta calidad y acabados elegantes. Ideal para resaltar tu estilo diario.';
+    p.descripcion || 'Pieza artesanal única, diseñada con materiales de alta calidad y acabados elegantes. Ideal para resaltar tu estilo diario.';
 
   const btnAgregar = document.getElementById('det-btn-agregar');
-  // Remover listeners anteriores clonando el nodo
-  const btnNuevo = btnAgregar.cloneNode(true);
+  const btnNuevo   = btnAgregar.cloneNode(true);
   btnNuevo.addEventListener('click', function () {
     agregarAlCarrito(p.nombre, p.precio);
     cerrarDetalle();
@@ -273,7 +297,7 @@ function verDetalle(nombre) {
 }
 
 // ------------------------------------------
-// MODAL — HELPERS GENÉRICOS
+// MODAL — HELPERS
 // ------------------------------------------
 function abrirModal(id) {
   const modal = document.getElementById(id);
@@ -300,8 +324,8 @@ function inicializarBusqueda() {
   const input = document.getElementById('input-busqueda');
   if (!input) return;
 
-  const tituloGrid      = document.querySelector('#new-arrivals h2');
-  const seccionesCat    = document.querySelectorAll('.category-section');
+  const tituloGrid       = document.querySelector('#new-arrivals h2');
+  const seccionesCat     = document.querySelectorAll('.category-section');
   const bannerIntermedio = document.querySelector('.mid-banner');
 
   input.addEventListener('input', function () {
@@ -329,9 +353,8 @@ function inicializarBusqueda() {
 }
 
 // ------------------------------------------
-// MENSAJE DE WHATSAPP
+// WHATSAPP
 // ------------------------------------------
-/** Genera y abre el mensaje de WhatsApp con el contenido actual del carrito. */
 function enviarPedidoPorWhatsApp() {
   if (carrito.length === 0) return;
 
@@ -345,50 +368,58 @@ function enviarPedidoPorWhatsApp() {
                   lineas + '\n\nTotal estimado: $' + totalPrecio().toFixed(2) +
                   '\n\n¿Tienen disponibilidad?';
 
-  window.open('https://wa.me/593992881283?text=' + encodeURIComponent(mensaje), '_blank');
+  window.open('https://wa.me/593988698300?text=' + encodeURIComponent(mensaje), '_blank');
   limpiarCarrito();
   cerrarModal('modal-compra');
 }
 
 // ------------------------------------------
-// INICIALIZACIÓN
+// ARRANQUE — carga JSON y luego inicializa
 // ------------------------------------------
 document.addEventListener('DOMContentLoaded', function () {
 
-  // Cargar grillas
-  cargarNuevasLlegadas('nuevos');
-  cargarCategorias();
-
-  // Búsqueda
-  inicializarBusqueda();
-
-  // Badge inicial oculto
-  actualizarContadorCarrito();
-
-  // Botón del carrito en el header
-  const carritoBtn = document.getElementById('carrito-btn');
-  if (carritoBtn) {
-    carritoBtn.addEventListener('click', function () {
-      abrirModalCarrito();
+  fetch('productos.json')
+    .then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    })
+    .then(function (data) {
+      productos = data;
+      cargarNuevasLlegadas('nuevos');
+      cargarCategorias();
+      inicializarBusqueda();
+      actualizarContadorCarrito();
+    })
+    .catch(function (err) {
+      console.error('Error al cargar productos.json:', err);
+      const grid = document.getElementById('product-grid');
+      if (grid) {
+        const aviso = document.createElement('p');
+        aviso.className = 'grid-vacio';
+        aviso.textContent = 'No se pudo cargar el catálogo. Recarga la página.';
+        grid.appendChild(aviso);
+      }
     });
-  }
 
-  // Botón "Ir a WhatsApp"
-  const btnWhatsApp = document.getElementById('btn-ir-whatsapp');
-  if (btnWhatsApp) {
-    btnWhatsApp.addEventListener('click', enviarPedidoPorWhatsApp);
-  }
+  // Carrito
+  const carritoBtn = document.getElementById('carrito-btn');
+  if (carritoBtn) carritoBtn.addEventListener('click', abrirModalCarrito);
 
-  // Botones de cierre de modales (definidos en index.html vía JS, pero por si acaso)
-  const btnCerrarCompra  = document.getElementById('btn-cerrar-compra');
-  const btnCancelarCompra = document.getElementById('btn-cancelar-compra');
-  const btnCerrarDetalle  = document.getElementById('btn-cerrar-detalle');
+  // WhatsApp
+  const btnWA = document.getElementById('btn-ir-whatsapp');
+  if (btnWA) btnWA.addEventListener('click', enviarPedidoPorWhatsApp);
 
-  if (btnCerrarCompra)   btnCerrarCompra.addEventListener('click',   function () { cerrarModal('modal-compra');  });
-  if (btnCancelarCompra) btnCancelarCompra.addEventListener('click',  function () { cerrarModal('modal-compra');  });
-  if (btnCerrarDetalle)  btnCerrarDetalle.addEventListener('click',   function () { cerrarModal('modal-detalle'); });
+  // Cierres de modales
+  const ids = [
+    ['btn-cerrar-compra',   'modal-compra' ],
+    ['btn-cancelar-compra', 'modal-compra' ],
+    ['btn-cerrar-detalle',  'modal-detalle'],
+  ];
+  ids.forEach(function (par) {
+    const btn = document.getElementById(par[0]);
+    if (btn) btn.addEventListener('click', function () { cerrarModal(par[1]); });
+  });
 
-  // Cerrar al hacer clic en el fondo del modal
   ['modal-compra', 'modal-detalle'].forEach(function (id) {
     const modal = document.getElementById(id);
     if (modal) {
@@ -398,7 +429,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Cerrar con Escape
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
       cerrarModal('modal-compra');

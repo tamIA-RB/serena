@@ -1,0 +1,218 @@
+[
+  {
+    "nombre": "Aros Cascada",
+    "precio": 7.99,
+    "imagen": "assets/ARETES/AROS_CASCADA.jpeg",
+    "categoria": "aretes",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Heart Chic",
+    "precio": 15.99,
+    "imagen": "assets/COLLARES/HEART_CHIC.png",
+    "categoria": "collares",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Pink Charm",
+    "precio": 4.99,
+    "imagen": "assets/ARETES/PINK_CHARM.jpeg",
+    "categoria": "aretes",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Blue Charm",
+    "precio": 22.00,
+    "imagen": "assets/ARETES/BLUE_CHARM.jpeg",
+    "categoria": "aretes",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Floral Rings",
+    "precio": 7.99,
+    "imagen": "assets/ARETES/FLORAL_RINGS.jpeg",
+    "categoria": "aretes",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Mini Teddy",
+    "precio": 15.99,
+    "imagen": "assets/COLLARES/MINI_TEDDY.png",
+    "categoria": "collares",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Gafas Vintage",
+    "precio": 14.99,
+    "imagen": "assets/GAFAS/Gafasverdesvintage.png",
+    "categoria": "gafas",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Halo",
+    "precio": 4.99,
+    "imagen": "assets/ARETES/halo.jpeg",
+    "categoria": "aretes",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Moon Rings",
+    "precio": 4.99,
+    "imagen": "assets/ARETES/MOON_RINGS.jpeg",
+    "categoria": "aretes",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Gafas Negras",
+    "precio": 18.00,
+    "imagen": "assets/GAFAS/Gafasmarconegro.png",
+    "categoria": "gafas",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Rosa Pastel",
+    "precio": 4.99,
+    "imagen": "assets/ARETES/ROSA_PASTEL.jpeg",
+    "categoria": "aretes",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Golden Rose",
+    "precio": 10.00,
+    "imagen": "assets/ARETES/GOLDEN_ROSE.jpeg",
+    "categoria": "aretes",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Gafas Pink",
+    "precio": 18.00,
+    "imagen": "assets/GAFAS/Gafasrosas.png",
+    "categoria": "gafas",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Asymmetric",
+    "precio": 10.00,
+    "imagen": "assets/ARETES/ASYMMETRYC.jpeg",
+    "categoria": "aretes",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Cherries",
+    "precio": 10.00,
+    "imagen": "assets/ARETES/CHERRIES.jpeg",
+    "categoria": "aretes",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Anillo Aura",
+    "precio": 12.50,
+    "imagen": "assets/ANILLOS/AURA_GOLD.jpeg",
+    "categoria": "anillos",
+    "stock": 0,
+    "estado": "agotado",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Mini Bloom",
+    "precio": 15.99,
+    "imagen": "assets/COLLARES/MINI_BLOOM.png",
+    "categoria": "collares",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Drop Glow",
+    "precio": 15.99,
+    "imagen": "assets/COLLARES/DROP_GLOW.png",
+    "categoria": "collares",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Equilibrio",
+    "precio": 15.99,
+    "imagen": "assets/COLLARES/EQUILIBRIO.png",
+    "categoria": "collares",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Mini Love",
+    "precio": 15.99,
+    "imagen": "assets/COLLARES/MINI_LOVE.png",
+    "categoria": "collares",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Gafas Miel",
+    "precio": 18.00,
+    "imagen": "assets/GAFAS/Gafascuadradasmiel.png",
+    "categoria": "gafas",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Gafas Vino",
+    "precio": 18.00,
+    "imagen": "assets/GAFAS/Gafascuadradasvino.png",
+    "categoria": "gafas",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Gafas Redondas Negras",
+    "precio": 18.00,
+    "imagen": "assets/GAFAS/Gafasredondasnegras.png",
+    "categoria": "gafas",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  },
+  {
+    "nombre": "Gafas Rosa",
+    "precio": 18.00,
+    "imagen": "assets/GAFAS/Gafasredondasrosa.png",
+    "categoria": "gafas",
+    "stock": 1,
+    "estado": "disponible",
+    "fechaSubida": "2026/05/11"
+  }
+]
