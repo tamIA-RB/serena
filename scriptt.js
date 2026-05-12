@@ -345,7 +345,7 @@ function enviarPedidoPorWhatsApp() {
                   lineas + '\n\nTotal estimado: $' + totalPrecio().toFixed(2) +
                   '\n\n¿Tienen disponibilidad?';
 
-  window.open('https://wa.me/593988698300?text=' + encodeURIComponent(mensaje), '_blank');
+  window.open('https://wa.me/593992881283?text=' + encodeURIComponent(mensaje), '_blank');
   limpiarCarrito();
   cerrarModal('modal-compra');
 }
