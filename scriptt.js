@@ -282,7 +282,7 @@ function verDetalle(nombre) {
   document.getElementById('det-nombre').textContent = p.nombre;
   document.getElementById('det-precio').textContent = '$' + p.precio.toFixed(2);
   document.getElementById('det-desc').textContent   =
-    p.descripcion || 'Pieza artesanal única, diseñada con materiales de alta calidad y acabados elegantes. Ideal para resaltar tu estilo diario.';
+    p.descripcion || 'Pieza única, diseñada con materiales de alta calidad y acabados elegantes. Ideal para resaltar tu estilo diario.';
 
   const btnAgregar = document.getElementById('det-btn-agregar');
   const btnNuevo   = btnAgregar.cloneNode(true);
@@ -368,7 +368,7 @@ function enviarPedidoPorWhatsApp() {
                   lineas + '\n\nTotal estimado: $' + totalPrecio().toFixed(2) +
                   '\n\n¿Tienen disponibilidad?';
 
-  window.open('https://wa.me/593988698300?text=' + encodeURIComponent(mensaje), '_blank');
+  window.open('https://wa.me/593992881283?text=' + encodeURIComponent(mensaje), '_blank');
   limpiarCarrito();
   cerrarModal('modal-compra');
 }
