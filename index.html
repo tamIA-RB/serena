@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SERENA | Joyería con alma</title>
+
+  <!-- SEO & Open Graph -->
+  <meta name="description" content="Joyería artesanal con alma. Anillos, collares, aretes y gafas hechos con amor en Cuenca, Ecuador.">
+  <meta property="og:title" content="SERENA | Joyería con alma">
+  <meta property="og:description" content="Piezas únicas de joyería artesanal. Envío a todo Ecuador.">
+  <meta property="og:image" content="assets/imagenes/foto1.jpg">
+  <meta property="og:url" content="https://serenaaa.ec">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<!-- ========== CABECERA ========== -->
+<header class="main-header">
+  <div class="header-container">
+
+    <div class="spacer"></div>
+
+    <div class="logo">SERENA</div>
+
+    <div class="header-icons">
+      <div class="search-container">
+        <input type="text" id="input-busqueda" placeholder="Buscar joyas…" aria-label="Buscar productos">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+      </div>
+
+      <button id="carrito-btn" class="carrito-btn" aria-label="Ver carrito de compras">
+        Carrito <span id="carrito-contador" class="carrito-badge" aria-live="polite">0</span>
+      </button>
+    </div>
+
+  </div>
+
+  <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
+    <a href="#portada"         class="nav-link active" data-section="portada">Inicio</a>
+    <a href="#menu-categorias" class="nav-link"        data-section="menu-categorias">Colección</a>
+    <a href="#anillos"         class="nav-link"        data-section="anillos">Anillos</a>
+    <a href="#collares"        class="nav-link"        data-section="collares">Collares</a>
+    <a href="#aretes"          class="nav-link"        data-section="aretes">Aretes</a>
+    <a href="#gafas"           class="nav-link"        data-section="gafas">Gafas</a>
+  </nav>
+
+</header>
+
+<!-- ========== CONTENIDO PRINCIPAL ========== -->
+<main>
+
+  <!-- Hero -->
+  <section id="portada" class="full-screen-hero">
+    <h1>WELCOME BACK SERENA</h1>
+  </section>
+
+  <!-- Barra de beneficios -->
+  <section class="benefits-bar" aria-label="Beneficios">
+    <p>✦ Envío a todo Ecuador &nbsp;|&nbsp; ✦ Paga Seguro &nbsp;|&nbsp; ✦ Calidad Garantizada</p>
+  </section>
+
+  <!-- Nuevas llegadas -->
+  <section id="new-arrivals" class="new-arrivals">
+    <h2>NUEVAS LLEGADAS</h2>
+    <div id="product-grid" class="shop-gallery" aria-label="Nuevas llegadas">
+      <!-- Cargado dinámicamente por scriptt.js -->
+    </div>
+  </section>
+
+  <!-- Banner intermedio -->
+  <section class="mid-banner" aria-label="Banner promocional">
+    <div class="banner-content">
+      <h2>BRILLA CADA DÍA</h2>
+      <button id="btn-descubrir" class="btn-descubrir">DESCUBRIR</button>
+    </div>
+  </section>
+
+  <!-- Colecciones destacadas -->
+  <section id="menu-categorias" class="collections-section">
+    <h2 class="section-title">Colecciones Destacadas</h2>
+
+    <div class="collections-grid">
+
+      <a href="#anillos" class="col-item" aria-label="Ver colección de anillos">
+        <img src="assets/ARETES/ROSA_PASTEL.jpeg" alt="Colección de anillos artesanales – Serena Joyería">
+      </a>
+
+      <a href="#collares" class="col-item" aria-label="Ver colección de collares">
+        <img src="assets/COLLARES/MINI_BLOOM.png" alt="Colección de collares – Serena Joyería Ecuador">
+      </a>
+
+      <a href="#gafas" class="col-item" aria-label="Ver colección de gafas">
+        <img src="assets/GAFAS/Gafasmarconegro.png" alt="Colección de gafas – Serena Joyería Cuenca">
+      </a>
+
+      <a href="https://www.instagram.com/serenaaa.ec?igsh=ZWZhN3NuOTFqcW1q&utm_source=qr"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="col-item social-link"
+         aria-label="Ver perfil de Instagram de Serena Joyería">
+        <div class="social-banner instagram-banner">
+          <span class="social-icon" aria-hidden="true">📷</span>
+          <p>@serenaaa.ec</p>
+          <small>Síguenos para más inspiración</small>
+          <span class="btn-perfil">Ver Perfil ›</span>
+        </div>
+      </a>
+
+      <a href="https://www.tiktok.com/@serenaaa.ec"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="col-item social-link"
+         aria-label="Ver perfil de TikTok de Serena Joyería">
+        <div class="social-banner tiktok-banner">
+          <span class="social-icon" aria-hidden="true">🎵</span>
+          <p>@serenaaa.ec</p>
+          <small>Síguenos para más inspiración</small>
+          <span class="btn-perfil">Ver Perfil ›</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Categorías individuales -->
+  <section id="anillos" class="category-section">
+    <h2 class="section-title">Anillos</h2>
+    <div id="grid-anillos" class="shop-gallery" aria-label="Catálogo de anillos"></div>
+  </section>
+
+  <section id="collares" class="category-section">
+    <h2 class="section-title">Collares</h2>
+    <div id="grid-collares" class="shop-gallery" aria-label="Catálogo de collares"></div>
+  </section>
+
+  <section id="aretes" class="category-section">
+    <h2 class="section-title">Aretes</h2>
+    <div id="grid-aretes" class="shop-gallery" aria-label="Catálogo de aretes"></div>
+  </section>
+
+  <section id="gafas" class="category-section">
+    <h2 class="section-title">Gafas</h2>
+    <div id="grid-gafas" class="shop-gallery" aria-label="Catálogo de gafas"></div>
+  </section>
+
+</main>
+
+<!-- ========== MODALES ========== -->
+
+<!-- Modal: confirmar compra -->
+<div id="modal-compra" class="modal-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+  <div class="modal-box">
+    <button class="modal-close" id="btn-cerrar-compra" aria-label="Cerrar">✕</button>
+    <div class="modal-icon" aria-hidden="true">🛍️</div>
+    <h3 id="modal-titulo">¡Listo para comprar!</h3>
+    <p id="modal-texto">Te redirigiremos a WhatsApp para completar tu pedido.</p>
+    <div class="modal-btns">
+      <button class="btn-confirmar" id="btn-ir-whatsapp">Ir a WhatsApp</button>
+      <button class="btn-cancelar" id="btn-cancelar-compra">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: detalle de producto -->
+<div id="modal-detalle" class="modal-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="det-nombre">
+  <div class="modal-box modal-box--detalle">
+    <button class="modal-close" id="btn-cerrar-detalle" aria-label="Cerrar">✕</button>
+
+    <div class="detalle-container">
+      <div class="detalle-imagen">
+        <img id="det-img" src="" alt="">
+      </div>
+      <div class="detalle-info">
+        <h3 id="det-nombre" class="detalle-nombre"></h3>
+        <p id="det-precio" class="detalle-precio"></p>
+        <div class="detalle-specs">
+          <h4 class="detalle-specs__titulo">ESPECIFICACIONES</h4>
+          <p id="det-desc" class="detalle-specs__texto"></p>
+        </div>
+        <button id="det-btn-agregar" class="btn-confirmar btn-confirmar--full">AÑADIR AL CARRITO</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ========== PIE DE PÁGINA ========== -->
+<footer class="main-footer">
+  <p>© 2025 SERENA Joyería · Cuenca, Ecuador · Hecho con amor 🤍</p>
+</footer>
+
+<!-- ========== SCRIPTS ========== -->
+<script src="scriptt.js"></script>
+<script>
+  /* -------------------------------------------------
+   * Navegación activa por scroll
+   * ------------------------------------------------- */
+  (function () {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section[id]');
+
+    function activateLink() {
+      let current = '';
+      sections.forEach(function (section) {
+        if (window.scrollY >= section.offsetTop - 100) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(function (link) {
+        link.classList.toggle('active', link.dataset.section === current);
+      });
+    }
+
+    window.addEventListener('scroll', activateLink, { passive: true });
+    activateLink();
+  })();
+
+  /* -------------------------------------------------
+   * Botón "Descubrir" del banner intermedio
+   * ------------------------------------------------- */
+  document.getElementById('btn-descubrir').addEventListener('click', function () {
+    document.getElementById('menu-categorias').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  /* -------------------------------------------------
+   * Cierre de modales via botones
+   * ------------------------------------------------- */
+  document.getElementById('btn-cerrar-compra').addEventListener('click', cerrarModal);
+  document.getElementById('btn-cancelar-compra').addEventListener('click', cerrarModal);
+  document.getElementById('btn-cerrar-detalle').addEventListener('click', cerrarDetalle);
+
+  /* Cerrar modales al hacer clic en el fondo */
+  document.getElementById('modal-compra').addEventListener('click', function (e) {
+    if (e.target === this) cerrarModal();
+  });
+  document.getElementById('modal-detalle').addEventListener('click', function (e) {
+    if (e.target === this) cerrarDetalle();
+  });
+
+  /* Cerrar modales con la tecla Escape */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      cerrarModal();
+      cerrarDetalle();
+    }
+  });
+
+  /* -------------------------------------------------
+   * Actualizar contador del carrito
+   * Llamar desde scriptt.js: actualizarContadorCarrito(n)
+   * ------------------------------------------------- */
+  function actualizarContadorCarrito(cantidad) {
+    var badge = document.getElementById('carrito-contador');
+    if (!badge) return;
+    badge.textContent = cantidad;
+    badge.style.display = cantidad > 0 ? 'inline-block' : 'none';
+  }
+</script>
+</body>
+</html>
